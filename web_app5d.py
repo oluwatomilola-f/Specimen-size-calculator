@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template_string
 import sqlite3
+import os
 
 
 app = Flask(__name__)
@@ -161,6 +162,10 @@ def calculator():
 
 if __name__ == '__main__':
     try:
-        app.run(debug=True)
+        app.run(
+             host='0.0.0.0',
+        port=int(os.environ.get('PORT', 5000)),
+            debug=True
+        )
     except Exception as e:
         print("Error starting Flask app:", e)
